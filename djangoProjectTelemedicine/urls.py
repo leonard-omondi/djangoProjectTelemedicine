@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from patient import views as patient_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', patient_view.register, name='register'),
     path('', include('telemedicine.urls')),  # Empty path makes this our homepage
 ]
