@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('telemedicine/', include('telemedicine.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from patient import views as patient_view
 
@@ -21,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', patient_view.register, name='register'),
     path('', include('telemedicine.urls')),  # Empty path makes this our homepage
+    path('login/', auth_views.LoginView.as_view(template_name='patient/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='patient/logout.html'), name='logout'),
 ]
