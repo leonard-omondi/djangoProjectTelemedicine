@@ -10,4 +10,4 @@ class Post(models.Model):  # Each class will be its own table in the database
     current_medications = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.doctor

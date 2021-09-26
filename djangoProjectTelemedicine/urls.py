@@ -17,11 +17,18 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from patient import views as patient_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', patient_view.register, name='register'),
+    path('profile/', patient_view.profile, name='profile'),
+    path('patient/', patient_view.patient, name='patient'),
     path('', include('telemedicine.urls')),  # Empty path makes this our homepage
     path('login/', auth_views.LoginView.as_view(template_name='patient/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='patient/logout.html'), name='logout'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
